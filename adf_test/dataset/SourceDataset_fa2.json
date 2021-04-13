@@ -1,0 +1,36 @@
+{
+	"name": "SourceDataset_fa2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDBNation",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "n_nationkey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "n_name",
+				"type": "varchar"
+			},
+			{
+				"name": "n_regionkey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "n_comment",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "h_nation"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

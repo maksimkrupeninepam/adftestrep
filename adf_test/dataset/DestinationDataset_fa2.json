@@ -1,0 +1,42 @@
+{
+	"name": "DestinationDataset_fa2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SnowflakeTrial",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "N_NATIONKEY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "N_NAME",
+				"type": "VARCHAR",
+				"precision": 25,
+				"scale": 0
+			},
+			{
+				"name": "N_REGIONKEY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "N_COMMENT",
+				"type": "VARCHAR",
+				"precision": 152,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "PUBLIC",
+			"table": "H_NATION"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

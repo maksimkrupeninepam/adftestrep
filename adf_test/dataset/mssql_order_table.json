@@ -1,0 +1,61 @@
+{
+	"name": "mssql_order_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "main_pipeline"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "o_orderkey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "o_custkey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "o_orderstatus",
+				"type": "char"
+			},
+			{
+				"name": "o_totalprice",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "o_orderdate",
+				"type": "date"
+			},
+			{
+				"name": "o_orderpriority",
+				"type": "char"
+			},
+			{
+				"name": "o_clerk",
+				"type": "char"
+			},
+			{
+				"name": "o_shippriority",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "o_comment",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ms_order"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,75 @@
+{
+	"name": "sf_order_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SnowflakeTrial",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "main_pipeline"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "O_ORDERKEY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "O_CUSTKEY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "O_ORDERSTATUS",
+				"type": "VARCHAR",
+				"precision": 1,
+				"scale": 0
+			},
+			{
+				"name": "O_TOTALPRICE",
+				"type": "FLOAT",
+				"precision": 15,
+				"scale": 0
+			},
+			{
+				"name": "O_ORDERDATE",
+				"type": "DATE",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "O_ORDERPRIORITY",
+				"type": "VARCHAR",
+				"precision": 15,
+				"scale": 0
+			},
+			{
+				"name": "O_CLERK",
+				"type": "VARCHAR",
+				"precision": 15,
+				"scale": 0
+			},
+			{
+				"name": "O_SHIPPRIORITY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "O_COMMENT",
+				"type": "VARCHAR",
+				"precision": 79,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "PUBLIC",
+			"table": "SF_ORDER"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

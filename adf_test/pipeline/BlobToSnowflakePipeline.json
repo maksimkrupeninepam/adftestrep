@@ -1,0 +1,109 @@
+{
+	"name": "BlobToSnowflakePipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "BlobToStage",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "testcontainer//h_nation.dsv"
+					},
+					{
+						"name": "Destination",
+						"value": "PUBLIC.H_NATION"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "N_NATIONKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_NATIONKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "N_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "N_REGIONKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_REGIONKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "N_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_COMMENT",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "nation_dsv",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeNation",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-04-09T09:17:23Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

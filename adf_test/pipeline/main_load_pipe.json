@@ -1,0 +1,521 @@
+{
+	"name": "main_load_pipe",
+	"properties": {
+		"activities": [
+			{
+				"name": "load_lineitem_copy",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "testcontainer//h_lineitem.dsv"
+					},
+					{
+						"name": "Destination",
+						"value": "PUBLIC.SF_LINEITEM"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand",
+							"additionalFormatOptions": {
+								"DATE_FORMAT": "DD.MM.YY"
+							}
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "testcontainer/test",
+						"enableCompression": true
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "L_ORDERKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_ORDERKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "L_PARTKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_PARTKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "L_SUPPKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_SUPPKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "L_LINENUMBER",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_LINENUMBER",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "L_QUANTITY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_QUANTITY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "L_EXTENDEDPRICE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_EXTENDEDPRICE",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "L_DISCOUNT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_DISCOUNT",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "L_TAX",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_TAX",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "L_RETURNFLAG",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_RETURNFLAG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "L_LINESTATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_LINESTATUS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "L_SHIPDATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_SHIPDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "L_COMMITDATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_COMMITDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "L_RECEIPTDATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_RECEIPTDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "L_SHIPINSTRUCT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_SHIPINSTRUCT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "L_SHIPMODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_SHIPMODE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "L_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "L_COMMENT",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "lineitem_dsv_file",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sf_lineitem_table",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "load_order_copy",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "load_lineitem_copy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "testcontainer//h_order.dsv"
+					},
+					{
+						"name": "Destination",
+						"value": "PUBLIC.SF_ORDER"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand",
+							"additionalFormatOptions": {
+								"DATE_FORMAT": "DD.MM.YYYY"
+							}
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "testcontainer/test",
+						"enableCompression": true
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "O_ORDERKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "O_ORDERKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "O_CUSTKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "O_CUSTKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "O_ORDERSTATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "O_ORDERSTATUS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "O_TOTALPRICE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "O_TOTALPRICE",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "O_ORDERDATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "O_ORDERDATE",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "O_ORDERPRIORITY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "O_ORDERPRIORITY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "O_CLERK",
+									"type": "String"
+								},
+								"sink": {
+									"name": "O_CLERK",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "O_SHIPPRIORITY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "O_SHIPPRIORITY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "O_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "O_COMMENT",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "order_dsv_file",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sf_order_table",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "calculate_cust_agg_copy",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "load_order_copy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "testcontainer//h_nation.dsv"
+					},
+					{
+						"name": "Destination",
+						"value": "PUBLIC.H_NATION"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"preCopyScript": "insert into \"DEMO_DB\".\"PUBLIC\".\"SF_CUSTOMER_AGG\"\nselect \n  o.o_custkey as \"custkey\",\n  count(distinct o_orderkey) as \"num_of_orders\",\n  count(l_linenumber) as \"num_of_items\",\n  sum(o_totalprice) as \"totalprice\"\nfrom \"DEMO_DB\".\"PUBLIC\".\"SF_LINEITEM\" l\njoin \"DEMO_DB\".\"PUBLIC\".\"SF_ORDER\" o on o.o_orderkey = l.l_orderkey\ngroup by o.o_custkey;",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "testcontainer/test"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "N_NATIONKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_NATIONKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "N_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "N_REGIONKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_REGIONKEY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "N_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_COMMENT",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "nation_dsv",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeNation",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-04-12T07:46:16Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

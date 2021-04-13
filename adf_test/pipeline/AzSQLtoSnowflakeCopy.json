@@ -1,0 +1,109 @@
+{
+	"name": "AzSQLtoSnowflakeCopy",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_fa2",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "dbo.h_nation"
+					},
+					{
+						"name": "Destination",
+						"value": "PUBLIC.H_NATION"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "testcontainer"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "n_nationkey",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "N_NATIONKEY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "n_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "n_regionkey",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "N_REGIONKEY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "n_comment",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_COMMENT",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_fa2",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_fa2",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-04-11T14:27:17Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
