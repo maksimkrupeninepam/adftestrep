@@ -4,7 +4,7 @@
 		"activities": [
 			{
 				"name": "load_blob_to_mssql",
-				"description": "desc",
+				"description": "desc test change",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
