@@ -38,7 +38,7 @@
 							"referenceName": "BlobStage",
 							"type": "LinkedServiceReference"
 						},
-						"path": "purview"
+						"path": ""
 					},
 					"parallelCopies": 1,
 					"translator": {
