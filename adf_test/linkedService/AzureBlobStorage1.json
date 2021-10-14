@@ -7,7 +7,7 @@
 		"type": "AzureBlobStorage",
 		"typeProperties": {
 			"sasUri": "https://mkrupeninstorageacc2.blob.core.windows.net/",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIk1LUlVQRU5JTkFERl9kNDU5ZDMzNi1lMmE5LTQ2ZTMtYWQ4OS0wZDA0ZTdhOTk3NjkiDQp9"
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIk1LUlVQRU5JTkFERl8xNTFmOGZjOS04ZGRhLTQxYWEtODQ5YS0zNmY4MTIwY2I4NTIiDQp9"
 		}
 	}
 }
