@@ -38,7 +38,7 @@
 							"referenceName": "BlobStage",
 							"type": "LinkedServiceReference"
 						},
-						"path": "testcontainer/test"
+						"path": "purview"
 					},
 					"parallelCopies": 1,
 					"translator": {
