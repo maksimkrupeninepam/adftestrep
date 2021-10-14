@@ -1,0 +1,45 @@
+{
+	"name": "delta_h_supplier",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabricksDeltaLake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureDatabricksDeltaLakeDataset",
+		"typeProperties": {
+			"database": "tpch",
+			"table": "h_supplier"
+		},
+		"schema": [
+			{
+				"name": "s_suppkey",
+				"type": "integer"
+			},
+			{
+				"name": "s_name",
+				"type": "string"
+			},
+			{
+				"name": "s_address",
+				"type": "string"
+			},
+			{
+				"name": "s_nationkey",
+				"type": "integer"
+			},
+			{
+				"name": "s_phone",
+				"type": "string"
+			},
+			{
+				"name": "s_acctbal",
+				"type": "float"
+			},
+			{
+				"name": "s_comment",
+				"type": "string"
+			}
+		]
+	}
+}

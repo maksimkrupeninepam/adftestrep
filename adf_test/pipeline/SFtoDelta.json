@@ -1,0 +1,124 @@
+{
+	"name": "SFtoDelta",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy_h_supplier",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SnowflakeSource",
+						"exportSettings": {
+							"type": "SnowflakeExportCopyCommand"
+						}
+					},
+					"sink": {
+						"type": "AzureDatabricksDeltaLakeSink",
+						"importSettings": {
+							"type": "AzureDatabricksDeltaLakeImportCommand"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 1,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "S_SUPPKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "s_suppkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "S_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "s_name",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "S_ADDRESS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "s_address",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "S_NATIONKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "s_nationkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "S_PHONE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "s_phone",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "S_ACCTBAL",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "s_acctbal",
+									"type": "Float"
+								}
+							},
+							{
+								"source": {
+									"name": "S_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "s_comment",
+									"type": "string"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "sf_h_supplier",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "delta_h_supplier",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

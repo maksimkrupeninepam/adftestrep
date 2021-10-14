@@ -1,0 +1,59 @@
+{
+	"name": "sf_h_supplier",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SnowflakeEpam",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "S_SUPPKEY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "S_NAME",
+				"type": "VARCHAR",
+				"precision": 25,
+				"scale": 0
+			},
+			{
+				"name": "S_ADDRESS",
+				"type": "VARCHAR",
+				"precision": 40,
+				"scale": 0
+			},
+			{
+				"name": "S_NATIONKEY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "S_PHONE",
+				"type": "VARCHAR",
+				"precision": 15,
+				"scale": 0
+			},
+			{
+				"name": "S_ACCTBAL",
+				"type": "NUMBER",
+				"precision": 12,
+				"scale": 2
+			},
+			{
+				"name": "S_COMMENT",
+				"type": "VARCHAR",
+				"precision": 101,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "TPCH_SF1",
+			"table": "SUPPLIER"
+		}
+	}
+}
