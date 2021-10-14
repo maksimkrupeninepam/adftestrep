@@ -32,7 +32,14 @@
 							"type": "AzureDatabricksDeltaLakeImportCommand"
 						}
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "BlobStage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "testcontainer/test"
+					},
 					"parallelCopies": 1,
 					"translator": {
 						"type": "TabularTranslator",
