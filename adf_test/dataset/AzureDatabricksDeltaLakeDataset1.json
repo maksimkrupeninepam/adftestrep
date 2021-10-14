@@ -1,0 +1,33 @@
+{
+	"name": "AzureDatabricksDeltaLakeDataset1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabricksDeltaLake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureDatabricksDeltaLakeDataset",
+		"typeProperties": {
+			"database": "default",
+			"table": "h_nation"
+		},
+		"schema": [
+			{
+				"name": "N_NATIONKEY",
+				"type": "integer"
+			},
+			{
+				"name": "N_NAME",
+				"type": "string"
+			},
+			{
+				"name": "N_REGIONKEY",
+				"type": "integer"
+			},
+			{
+				"name": "N_COMMENT",
+				"type": "string"
+			}
+		]
+	}
+}

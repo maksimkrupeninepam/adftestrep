@@ -1,0 +1,99 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "BlobToDelta",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureDatabricksDeltaLakeSink",
+						"importSettings": {
+							"type": "AzureDatabricksDeltaLakeImportCommand"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 1,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "N_NATIONKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_NATIONKEY",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "N_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_NAME",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "N_REGIONKEY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_REGIONKEY",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "N_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "N_COMMENT",
+									"type": "string"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "order_dsv_file",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureDatabricksDeltaLakeDataset1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

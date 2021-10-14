@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "h_order.dsv",
+				"fileName": "h_nation.dsv",
 				"container": "testcontainer"
 			},
 			"columnDelimiter": "|",
