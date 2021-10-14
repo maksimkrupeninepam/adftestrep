@@ -6,8 +6,8 @@
 		"annotations": [],
 		"type": "AzureBlobStorage",
 		"typeProperties": {
-			"sasUri": "https://mkrupeninstorageacc2.blob.core.windows.net/",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIk1LUlVQRU5JTkFERl9hMDg2Nzk3ZS0yOGY2LTQ3NzAtYmM1MS1mODY0ZWMyYjlkNDUiDQp9"
+			"sasUri": "https://mkrupeninstorageacc2.blob.core.windows.net/testcontainer",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIk1LUlVQRU5JTkFERl9lMjNkMjAzZS03NDBmLTRiMTMtYjM4OS1jOTYyZWM4NGQwNjMiDQp9"
 		}
 	}
 }
