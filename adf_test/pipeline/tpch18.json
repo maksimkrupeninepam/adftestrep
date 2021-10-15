@@ -166,7 +166,7 @@
 							"referenceName": "BlobStage",
 							"type": "LinkedServiceReference"
 						},
-						"path": "testcontainer"
+						"path": "purview"
 					},
 					"translator": {
 						"type": "TabularTranslator",
