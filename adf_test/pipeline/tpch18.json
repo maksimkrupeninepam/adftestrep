@@ -217,7 +217,7 @@
 								},
 								"sink": {
 									"name": "l_linenumber",
-									"type": "Int"
+									"type": "Float"
 								}
 							},
 							{
@@ -227,7 +227,7 @@
 								},
 								"sink": {
 									"name": "l_quantity",
-									"type": "Int"
+									"type": "Float"
 								}
 							},
 							{
