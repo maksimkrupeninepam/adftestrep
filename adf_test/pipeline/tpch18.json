@@ -529,6 +529,7 @@
 					},
 					"sink": {
 						"type": "AzureDatabricksDeltaLakeSink",
+						"preCopyScript": "insert into tpch.q18result\nselect\n\tc_name,\n\tc_custkey,\n\to_orderkey,\n\to_orderdate,\n\to_totalprice,\n\tsum(l_quantity)\nfrom\n\ttpch.customer,\n\ttpch.orders,\n\ttpch.lineitem\nwhere\n\to_orderkey in (\n\t\tselect\n\t\t\tl_orderkey\n\t\tfrom\n\t\t\ttpch.lineitem\n\t\tgroup by\n\t\t\tl_orderkey having\n\t\t\t\tsum(l_quantity) > 313\n\t)\n\tand c_custkey = o_custkey\n\tand o_orderkey = l_orderkey\ngroup by\n\tc_name,\n\tc_custkey,\n\to_orderkey,\n\to_orderdate,\n\to_totalprice\norder by\n\to_totalprice desc,\n\to_orderdate\nlimit 100",
 						"importSettings": {
 							"type": "AzureDatabricksDeltaLakeImportCommand"
 						}
@@ -540,6 +541,81 @@
 							"type": "LinkedServiceReference"
 						},
 						"path": "testcontainer"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "S_SUPPKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "s_suppkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "S_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "s_name",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "S_ADDRESS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "s_address",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "S_NATIONKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "s_nationkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "S_PHONE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "s_phone",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "S_ACCTBAL",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "s_acctbal",
+									"type": "Float"
+								}
+							},
+							{
+								"source": {
+									"name": "S_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "s_comment",
+									"type": "string"
+								}
+							}
+						]
 					}
 				},
 				"inputs": [
