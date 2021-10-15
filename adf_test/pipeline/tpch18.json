@@ -146,7 +146,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "TPCH_SF1.LINEITEM"
+					},
+					{
+						"name": "Destination",
+						"value": "tpch.lineitem"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "SnowflakeSource",
@@ -166,7 +175,7 @@
 							"referenceName": "BlobStage",
 							"type": "LinkedServiceReference"
 						},
-						"path": "purview"
+						"path": "testcontainer"
 					},
 					"translator": {
 						"type": "TabularTranslator",
