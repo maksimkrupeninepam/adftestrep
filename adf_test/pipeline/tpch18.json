@@ -488,6 +488,72 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "copy_aggregate",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "copy_h_customer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "copy_h_lineitem",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "copy_h_orders",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SnowflakeSource",
+						"exportSettings": {
+							"type": "SnowflakeExportCopyCommand"
+						}
+					},
+					"sink": {
+						"type": "AzureDatabricksDeltaLakeSink",
+						"importSettings": {
+							"type": "AzureDatabricksDeltaLakeImportCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "BlobStage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "testcontainer"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "sf_h_supplier",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "delta_h_supplier",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
