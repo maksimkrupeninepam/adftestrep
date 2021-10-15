@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "BlobToDelta",
+				"name": "copy_h_lineitem",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -13,17 +13,21 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "TPCH_SF1.LINEITEM"
+					},
+					{
+						"name": "Destination",
+						"value": "tpch.lineitem"
+					}
+				],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+						"type": "SnowflakeSource",
+						"exportSettings": {
+							"type": "SnowflakeExportCopyCommand"
 						}
 					},
 					"sink": {
@@ -40,47 +44,166 @@
 						},
 						"path": "testcontainer"
 					},
-					"parallelCopies": 1,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
 							{
 								"source": {
-									"name": "N_NATIONKEY",
-									"type": "String"
+									"name": "L_ORDERKEY",
+									"type": "Int64"
 								},
 								"sink": {
-									"name": "N_NATIONKEY",
+									"name": "l_orderkey",
 									"type": "Int"
 								}
 							},
 							{
 								"source": {
-									"name": "N_NAME",
+									"name": "L_PARTKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "l_partkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "L_SUPPKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "l_suppkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "L_LINENUMBER",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "l_linenumber",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "L_QUANTITY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "l_quantity",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "L_EXTENDEDPRICE",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "l_extendedprice",
+									"type": "Float"
+								}
+							},
+							{
+								"source": {
+									"name": "L_DISCOUNT",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "l_discount",
+									"type": "Float"
+								}
+							},
+							{
+								"source": {
+									"name": "L_TAX",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "l_tax",
+									"type": "Float"
+								}
+							},
+							{
+								"source": {
+									"name": "L_RETURNFLAG",
 									"type": "String"
 								},
 								"sink": {
-									"name": "N_NAME",
+									"name": "l_returnflag",
 									"type": "string"
 								}
 							},
 							{
 								"source": {
-									"name": "N_REGIONKEY",
+									"name": "L_LINESTATUS",
 									"type": "String"
 								},
 								"sink": {
-									"name": "N_REGIONKEY",
-									"type": "Int"
+									"name": "l_linestatus",
+									"type": "string"
 								}
 							},
 							{
 								"source": {
-									"name": "N_COMMENT",
+									"name": "L_SHIPDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "l_shipdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "L_COMMITDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "l_commitdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "L_RECEIPTDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "l_receiptdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "L_SHIPINSTRUCT",
 									"type": "String"
 								},
 								"sink": {
-									"name": "N_COMMENT",
+									"name": "l_shipinstruct",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "L_SHIPMODE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_shipmode",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "L_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_comment",
 									"type": "string"
 								}
 							}
@@ -89,13 +212,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "nation_dsv",
+						"referenceName": "SnowflakeTable1",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureDatabricksDeltaLakeDataset1",
+						"referenceName": "AzureDatabricksDeltaLakeDataset2",
 						"type": "DatasetReference"
 					}
 				]
