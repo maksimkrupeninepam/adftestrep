@@ -346,6 +346,148 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "copy_h_orders",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SnowflakeSource",
+						"exportSettings": {
+							"type": "SnowflakeExportCopyCommand"
+						}
+					},
+					"sink": {
+						"type": "AzureDatabricksDeltaLakeSink",
+						"importSettings": {
+							"type": "AzureDatabricksDeltaLakeImportCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "BlobStage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "testcontainer"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "O_ORDERKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "o_orderkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "O_CUSTKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "o_custkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "O_ORDERSTATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "o_orderstatus",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "O_TOTALPRICE",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "o_totalprice",
+									"type": "Float"
+								}
+							},
+							{
+								"source": {
+									"name": "O_ORDERDATE",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "o_orderdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "O_ORDERPRIORITY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "o_orderpriority",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "O_CLERK",
+									"type": "String"
+								},
+								"sink": {
+									"name": "o_clerk",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "O_SHIPPRIORITY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "o_shippriority",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "O_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "o_comment",
+									"type": "string"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "sf_orders",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "delta_orders",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []

@@ -1,0 +1,53 @@
+{
+	"name": "delta_orders",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabricksDeltaLake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureDatabricksDeltaLakeDataset",
+		"typeProperties": {
+			"database": "tpch",
+			"table": "orders"
+		},
+		"schema": [
+			{
+				"name": "o_orderkey",
+				"type": "integer"
+			},
+			{
+				"name": "o_custkey",
+				"type": "integer"
+			},
+			{
+				"name": "o_orderstatus",
+				"type": "string"
+			},
+			{
+				"name": "o_totalprice",
+				"type": "float"
+			},
+			{
+				"name": "o_orderdate",
+				"type": "date"
+			},
+			{
+				"name": "o_orderpriority",
+				"type": "string"
+			},
+			{
+				"name": "o_clerk",
+				"type": "string"
+			},
+			{
+				"name": "o_shippriority",
+				"type": "integer"
+			},
+			{
+				"name": "o_comment",
+				"type": "string"
+			}
+		]
+	}
+}
