@@ -1,0 +1,113 @@
+{
+	"name": "SnowflakeTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SnowflakeEpam",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "L_ORDERKEY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "L_PARTKEY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "L_SUPPKEY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "L_LINENUMBER",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "L_QUANTITY",
+				"type": "NUMBER",
+				"precision": 12,
+				"scale": 2
+			},
+			{
+				"name": "L_EXTENDEDPRICE",
+				"type": "NUMBER",
+				"precision": 12,
+				"scale": 2
+			},
+			{
+				"name": "L_DISCOUNT",
+				"type": "NUMBER",
+				"precision": 12,
+				"scale": 2
+			},
+			{
+				"name": "L_TAX",
+				"type": "NUMBER",
+				"precision": 12,
+				"scale": 2
+			},
+			{
+				"name": "L_RETURNFLAG",
+				"type": "VARCHAR",
+				"precision": 1,
+				"scale": 0
+			},
+			{
+				"name": "L_LINESTATUS",
+				"type": "VARCHAR",
+				"precision": 1,
+				"scale": 0
+			},
+			{
+				"name": "L_SHIPDATE",
+				"type": "DATE",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "L_COMMITDATE",
+				"type": "DATE",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "L_RECEIPTDATE",
+				"type": "DATE",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "L_SHIPINSTRUCT",
+				"type": "VARCHAR",
+				"precision": 25,
+				"scale": 0
+			},
+			{
+				"name": "L_SHIPMODE",
+				"type": "VARCHAR",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "L_COMMENT",
+				"type": "VARCHAR",
+				"precision": 44,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "TPCH_SF1",
+			"table": "LINEITEM"
+		}
+	}
+}
