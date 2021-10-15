@@ -1,6 +1,141 @@
 {
 	"name": "tpch18",
 	"properties": {
+		"activities": [
+			{
+				"name": "copy_h_customer",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SnowflakeSource",
+						"exportSettings": {
+							"type": "SnowflakeExportCopyCommand"
+						}
+					},
+					"sink": {
+						"type": "AzureDatabricksDeltaLakeSink",
+						"importSettings": {
+							"type": "AzureDatabricksDeltaLakeImportCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "BlobStage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "testcontainer",
+						"enableCompression": true
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "C_CUSTKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "c_custkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "C_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_name",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "C_ADDRESS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_address",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "C_NATIONKEY",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "c_nationkey",
+									"type": "Int"
+								}
+							},
+							{
+								"source": {
+									"name": "C_PHONE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_phone",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "C_ACCTBAL",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "c_acctbal",
+									"type": "Float"
+								}
+							},
+							{
+								"source": {
+									"name": "C_MKTSEGMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_mktsegment",
+									"type": "string"
+								}
+							},
+							{
+								"source": {
+									"name": "C_COMMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_comment",
+									"type": "string"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "sf_customer",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "delta_customer",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
 		"annotations": []
 	}
 }

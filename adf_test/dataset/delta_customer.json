@@ -1,0 +1,49 @@
+{
+	"name": "delta_customer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDatabricksDeltaLake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureDatabricksDeltaLakeDataset",
+		"typeProperties": {
+			"database": "tpch",
+			"table": "customer"
+		},
+		"schema": [
+			{
+				"name": "c_custkey",
+				"type": "integer"
+			},
+			{
+				"name": "c_name",
+				"type": "string"
+			},
+			{
+				"name": "c_address",
+				"type": "string"
+			},
+			{
+				"name": "c_nationkey",
+				"type": "integer"
+			},
+			{
+				"name": "c_phone",
+				"type": "string"
+			},
+			{
+				"name": "c_acctbal",
+				"type": "float"
+			},
+			{
+				"name": "c_mktsegment",
+				"type": "string"
+			},
+			{
+				"name": "c_comment",
+				"type": "string"
+			}
+		]
+	}
+}
