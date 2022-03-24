@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "adf_sql18",
+				"name": "adf_sql19",
 				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
